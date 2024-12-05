@@ -1,4 +1,9 @@
 terraform {
+  backend "s3" {
+    bucket = "backend-s3-tf-bucket-pankaj"
+    key = "dev/terraform.tfstate"
+    
+  }
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -14,7 +19,7 @@ provider "aws" {
 
 # Create an S3 Bucket
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucketndlknalsf"
+  bucket = "my-tf-test-bucketndlknalsf-test"
 
   tags = {
     Name        = "My bucket"
