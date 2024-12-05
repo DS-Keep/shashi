@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform-plan:
-    name: 'Terraform Plan'
+    name: 'Terraform Plan - ${{ github.repository }}'  # Using the repository name dynamically
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,7 @@ jobs:
         run: terraform plan -out=tfplan
 
   terraform-apply:
-    name: 'Terraform Apply'
+    name: 'Terraform Apply - ${{ github.repository }}'  # Using the repository name dynamically
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     needs: terraform-plan  # Ensure this job runs only after the 'terraform-plan' job completes successfully.
