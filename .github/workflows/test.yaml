@@ -23,25 +23,25 @@ jobs:
         terraform_version: 1.5.6
 
     - name: Terraform Initialize
-      working-directory: ./terraform-infrastructure
+      working-directory: ./terraform-infra
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform init
 
     - name: Terraform Validate
-      working-directory: ./terraform-infrastructure
+      working-directory: ./terraform-infra
       run: terraform validate
 
     - name: Terraform Plan
-      working-directory: ./terraform-infrastructure
+      working-directory: ./terraform-infra
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform plan -out=tfplan
 
     - name: Apply Plan
-      working-directory: ./terraform-infrastructure
+      working-directory: ./terraform-infra
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
