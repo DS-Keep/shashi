@@ -2,6 +2,7 @@ terraform {
   backend "s3" {
     bucket = "backend-s3-tf-bucket-pankaj"
     key = "dev/terraform.tfstate"
+    region = "us-east-1"
     
   }
   required_providers {
