@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   terraform:
@@ -11,20 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.5.6  # Ensure to specify the desired version (replace if needed)
+        terraform_version: 1.5.6
 
     - name: Terraform Initialize
       working-directory: ./terraform-infrastructure
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}  # Optional: If needed
       run: terraform init
 
     - name: Terraform Validate
@@ -36,14 +38,11 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}  # Optional: If needed
-      run: terraform plan #-out=tfplan
+      run: terraform plan -out=tfplan
 
-    - name: Terraform Apply
+    - name: Apply Plan
       working-directory: ./terraform-infrastructure
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}  # Optional: If needed
-      run: terraform apply -auto-approve 
-#final
+      run: terraform apply -auto-approve
