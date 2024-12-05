@@ -5,11 +5,7 @@ terraform {
       version = "~> 5.0"
     }
   }
-  backend "s3" {
-    bucket = "my-terraform-statedlkgfsdhpoagih"
-    key    = "terraform/state"
-    region = "us-east-1"
-  }
+ 
 }
 
 provider "aws" {
@@ -18,7 +14,7 @@ provider "aws" {
 
 # Create an S3 Bucket
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket"
+  bucket = "my-tf-test-bucketndlknalsf"
 
   tags = {
     Name        = "My bucket"
