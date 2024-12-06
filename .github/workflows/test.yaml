@@ -42,7 +42,7 @@ jobs:
 
       - name: Echo GitHub Ref Name
         run: |
-          echo "GitHub Ref Name: application-$GITHUB_REF_NAME"
+          application-$GITHUB_REF_NAME
         env:
           GITHUB_REF_NAME: ${{ github.ref_name }}
         
