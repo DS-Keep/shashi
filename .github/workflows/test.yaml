@@ -10,9 +10,9 @@ on:
 
 jobs:
   terraform-plan:
-    name: 'Terraform Plan - ${{ github.repository }}'  # Using the repository name dynamically
+    name: 'Terraform Plan' 
     runs-on: ubuntu-latest
-
+    environment: ${{ github.ref_name }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
