@@ -40,6 +40,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: terraform plan -out=tfplan
 
+      - name: Echo GitHub Ref Name
+        run: |
+          echo "GitHub Ref Name: $GITHUB_REF_NAME"
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        
+
   terraform-apply:
     name: 'Terraform Apply - ${{ github.repository }}'  # Using the repository name dynamically
     runs-on: ubuntu-latest
