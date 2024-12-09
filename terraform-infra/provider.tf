@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "example" {
 }
 
 
-resource "aws_s3_bucket" "example" {
+resource "aws_s3_bucket" "examples" {
   bucket = "my-tf-test-bucketndlknalsf-test-sattu"
 
   tags = {
