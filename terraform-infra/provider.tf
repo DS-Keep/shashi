@@ -28,6 +28,16 @@ resource "aws_s3_bucket" "example" {
   }
 }
 
+
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucketndlknalsf-test-sattu"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
 # # Outputs
 # output "s3_bucket_name" {
 #   description = "The name of the created S3 bucket"
